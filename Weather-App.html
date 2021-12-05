@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+  background: #f5c7f7;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: #5e63b6;
+}
+img {
+  max-width: 100%;
+  height: 350px;
+}
+h1 {
+  font-size: 35px;
+  font-weight: bold;
+  margin: 0px;
+}
+h2,
+h3 {
+  font-size: 18px;
+  margin: 0px;
+}
+a {
+  text-decoration: none;
+  font-size: 23px;
+}
+a:hover {
+  text-decoration: underline;
+}
+.container {
+  display: block;
+  max-width: 56%;
+  padding: 60px;
+}
+.box {
+  color: #5e63b6;
+}
+.search {
+  background-color: #f5c7f7;
+  border: none;
+  border-radius: 2px;
+  color: #27296d;
+  padding: 6px 7px;
+}
+.search:hover {
+  background-color: purple;
+  color: white;
+  box-shadow: 5px 5px 10px lightgray;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+.current {
+  background-color: #a393eb;
+  border: none;
+  border-radius: 2px;
+  color: #27296d;
+  padding: 6px 7px;
+}
+.current:hover {
+  background-color: hotpink;
+  color: white;
+  box-shadow: 5px 5px 10px lightgray;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+.col-6 {
+  font-size: 45px;
+}
+.col-4 {
+  text-align: justify;
+}
+.col-2 {
+  text-align: center;
+}
+.footer {
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 0px;
+  padding-top: 0px;
+  text-align: center;
+}
+.linkedin-link {
+  color: #5e63b6;
+  text-align: center;
+  text-decoration: none;
+}
+.linkedin-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+    </style>
+  </head>
+<body>
+  <div class="container">
+    <div class="card" style="width: 43rem;">
+<img src="images/city-landscape-background.jpeg" class="card-img-top" alt="city-landscape">
+<div class="card-body">
+<form id="search-form">
+        <input type="search" placeholder="Search Engine" class="box" autofocus id="search-form-input" />
+        <input type="submit" value="Search" class="search" />
+        <input type="submit" value="Current" class="current" id="currently" />
+        <br />
+</form>   
+        <p id="searching"></p>
+        <h1 id="city">New York</h1>
+        <h2>Saturday, Nov 20, 2021 00:00</h2>
+        <h3 id="description">Cloudy</h3>
+        
+        <div class="row">
+          <div class="col-6">🌥<b class="temperature" id="nyc"> 55</b><small><sup><a href="#" class="degrees" id="fahrenheit"> °F</a></sup></small><small><sup> |<a href="#" id="celsius"> °C</a></sup></small></div>
+          <div class="col-4"> Humidity: <span id="humidity">0</span>%
+            <br />
+            Wind Speed: <span id="wind">4</span> mph
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-2">Sunday
+          <br /> 🌥
+          <br /> 57°</div>
+          <div class="col-2">Monday
+          <br /> ☀️
+          <br /> 64°</div>
+          <div class="col-2">Tuesday
+          <br /> ☀️
+          <br /> 63°</div>
+          <div class="col-2">Wednesday
+          <br /> ☀️
+          <br /> 63°</div>
+          <div class="col-2">Thursday
+          <br /> 🌥
+          <br /> 63°</div>
+          <div class="col-2">Friday
+          <br /> 🌧
+          <br /> 66°</div>
+        </div>
+      </div>
+      </div>
+      </div>   
+    </div>
+    <p class="footer">
+      This page was built by
+      <a
+        href="https://www.linkedin.com/in/les-shawn-lamorell-b08bb638/"
+        target="_blank"
+        class="linkedin-link"
+      >
+        <strong>Les-Shawn Lamorell</strong>
+      </a>
+    </p>
+  </div>
+<script>
+// Feature 1
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+let months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+];
+
+let now = new Date();
+
+let h2 = document.querySelector("h2");
+
+let day = days["6"];
+let month = months[now.getMonth("10")];
+let date = "20";
+let year = now.getFullYear();
+
+let hours = now.getHours();
+if (hours < "10") {
+  hours = `0${hours}`;
+}
+let minutes = now.getMinutes();
+if (minutes < "10") {
+  minutes = `0${minutes}`;
+}
+
+h2.innerHTML = `${day}, ${month} ${date}, ${year} ${hours}:${minutes}`;
+
+// Feature 2
+// function search(event) {
+  // event.preventDefault();
+  // let searchInput = document.querySelector("#search-form-input");
+
+  // let p = document.querySelector("#searching");
+  // if (searchInput.value) {
+    // p.innerHTML = `Searching for ${searchInput.value}...`;
+  // } else {
+    // p.innerHTML = "null";
+    // alert("Please type a city");
+  // }
+// }
+
+// let form = document.querySelector("#search-form");
+// form.addEventListener("submit", search);
+
+// Bonus Feature
+let temperature = document.querySelector("#nyc");
+
+// function fahrenheit(event) {
+  // event.preventDefault();
+  // temperature.innerHTML = "55";
+// }
+
+// let fahrenheitLink = document.querySelector("#fahrenheit");
+// fahrenheitLink.addEventListener("click", fahrenheit);
+
+// function celsius(event) {
+  // event.preventDefault();
+  // temperature.innerHTML = "13";
+// }
+
+// let celsiusLink = document.querySelector("#celsius");
+// celsiusLink.addEventListener("click", celsius);
+
+// Bonus points
+function showLocation(position) {
+  // let latitude = position.coords.latitude;
+  // let longitude = position.coords.longitude;
+  let units = "imperial";
+  let apiKey = "50eb452afdb91f1daa0d87b94b849c06";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${units}`;
+
+  axios.get(apiUrl).then(displayWeatherCondition);
+}
+
+function getCurrentPosition(event) {
+  event.preventDefault();
+
+  navigator.geolocation.getCurrentPosition(showLocation);
+}
+
+let currentButton = document.querySelector("#currently");
+currentButton.addEventListener("click", getCurrentPosition);
+
+// Search Engine Task
+function search(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-form-input");
+  let city = document.querySelector("#city");
+  city.innerHTML = `${searchInput.value}`;
+  searchCity(searchInput.value);
+
+}
+  let form = document.querySelector("#search-form");
+  form.addEventListener("submit", search);
+
+function searchCity(city) {
+
+  let apiKey = "50eb452afdb91f1daa0d87b94b849c06";
+  let units = "imperial";
+  let cityApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+
+  axios.get(cityApiUrl).then(displayWeatherCondition);
+}
+
+  function displayWeatherCondition(response) {
+  // let temperatureElement = document.querySelector("#nyc");
+  // let temperature = Math.round(response.data.main.temp);
+  // let heading = document.querySelector("h1")
+  // let city = response.data.name;
+  // heading.innerHTML = city;
+  // temperatureElement.innerHTML = temperature;
+  document.querySelector("#nyc").innerHTML = Math.round(response.data.main.temp);
+  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#description").innerHTML = response.data.weather[0].main;
+  document.querySelector("#humidity").innerHTML = Math.round(response.data.main.humidity);
+  document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
+}
+</script>
+</body>
+</html>
